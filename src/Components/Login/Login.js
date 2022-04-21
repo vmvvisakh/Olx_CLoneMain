@@ -1,5 +1,5 @@
 import React, {useState,useContext} from 'react';
-import {FirebaseContext} from '../../Store/Context';
+import {FirebaseContext} from '../../Store/FirebaseContext';
 import Logo from '../../olx-logo.png';
 import { useHistory } from 'react-router-dom';
 import './Login.css';
@@ -12,6 +12,7 @@ function Login() {
  
 
   const handleLogin=(e)=>{
+    firebase.auth();
     e.preventDefault()
     firebase.auth().signInWithEmailAndPassword(email,password).then(()=>{
       history.push('/')

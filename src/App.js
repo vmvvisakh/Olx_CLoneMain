@@ -4,8 +4,9 @@ import Home from './Pages/Home';
 import  {BrowserRouter as Router,Route} from 'react-router-dom'
 import Signup from './Pages/Signup'
 import Login from './Pages/Login'
-import { AuthContext,FirebaseContext} from './Store/Context';
+import { AuthContext,FirebaseContext} from './Store/FirebaseContext';
 import Viewpost from './Pages/ViewPost'
+import Create from './Pages/Create'
 
 
 
@@ -33,9 +34,8 @@ function App() {
 
        <Login/>
         </Route> 
-        <Route path='/view'>
-
-       <Viewpost/>
+        <Route path='/create'>
+          <Create />
         </Route> 
      
       </Router>

@@ -1,9 +1,12 @@
 import React, { useState,useContext } from 'react';
 
 import Logo from '../../olx-logo.png';
-import { FirebaseContext } from '../../Store/Context';
+import { FirebaseContext } from '../../Store/FirebaseContext';
 import './Signup.css';
 import { useHistory } from 'react-router-dom';
+
+import 'firebase/auth'
+
 
 
 
@@ -14,13 +17,16 @@ export default function Signup() {
   const [phone,setPhone]=useState('')
   const [password,setPassword]=useState('')
   const{firebase}=useContext(FirebaseContext)
-
+  
   const handleSubmit=(e)=>{
+     
+    
     e.preventDefault()
-    firebase.auth().createUserWithEmailAndPassword(email,password).then((result)=>{
+    firebase.auth();
+    firebase.auth.Auth.createUserWithEmailAndPassword(email,password).then((result)=>{
       result.user.updateProfile({displayName:username}).then(()=>{
-        firebase.firestore().collection('users').add({
-          id:result.user.uid,
+        firebase.firestore().collection('Users').add({
+          id:result.User.UID,
           username:username,
           phone:phone
         }).then(()=>{
@@ -35,7 +41,7 @@ export default function Signup() {
   return (
     <div>
       <div className="signupParentDiv">
-        <img width="200px" height="200px" src={Logo}></img>
+        <img width="200px" height="200px" src={Logo} alt=""></img>
         <form onSubmit={handleSubmit}>
           <label htmlFor="fname">Username</label>
           <br />
